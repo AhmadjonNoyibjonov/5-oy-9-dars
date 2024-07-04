@@ -1,47 +1,11 @@
-// let n = true;
-
-// let promise = new Promise(function(resolve,reject) {
-//     setInterval(function() {
-//         if(n) {
-//             resolve("Mavjud ekan")
-//         } else{
-//             reject("mavjud emas ekan");
-//         }
-//     },3000)
-// });
-
-// promise
-//         .then(function(a) {
-//             console.log(a);
-//         })
-//         .catch(function(b) {
-//             console.log(b);
-//         })
-//         .finally(function() {
-//             console.log("muvaffaqqiyatli bajarildi");
-//         })
-
-// async function test() {
-//     return "Hello"
-// }
-
-// console.log(test());
-
-// let a;
-
-// try {
-//   console.log(33,b);
-// } catch (error) {
-//   console.log(35, error);
-// }
 
 const wrapper = document.querySelector(".wrapper");
 const loading = document.querySelector(".loading");
-// const flags = document.querySelectorAll(".flag_img");
+const flags = document.querySelectorAll(".flag_img");
 
 function createCard(user) {
   return `<div class="card">
-    <img src="${user.flag}" alt="">
+    <img class="flag_img" src="${user.flag}" alt="">
     <h2>${user.country}</h2>
     <h2>${"Kodi: " + user.code}</h2>
     <h2>${"id: " + user.id}</h2>
@@ -64,22 +28,24 @@ document.addEventListener("DOMContentLoaded", function () {
           wrapper.innerHTML += card;
           loading.style.display = "none";
         });
+
+      const images = document.querySelectorAll(".flag_img");
+      images.forEach(function (value) {
+        value.onclick = mode;
+        function mode() {
+          if (value.check) {
+            this.style.transform = "scale(1,1)";
+          } else {
+            this.style.transform = "scale(2.5,2.5)";
+          }
+
+          value.addEventListener("click", function () {
+            this.style.transform = "scale(1,1)";
+          });
+        }
+      });
     })
     .catch(function (err) {
       console.log(err);
     });
 });
-
-const flags = document.querySelectorAll(".flag_img");
-flags.forEach(function (value) {
-    check.onclick = width;
-    function width() {
-        if (value.checked) {
-            this.style.transform = "scale(1.5, 1.5)";
-        } else {
-            this.style.transform = "scale(0,0)"
-        }
-    }
-});
-
-
